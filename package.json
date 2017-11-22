@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack -p",
-    "dev": "webpack-dev-server --hot --inline --host 192.168.55.168 --port 8900",
+    "dev": "webpack-dev-server --hot --inline",
     "build-css": "node-sass --include-path scss app/styles/styles.scss dist/styles/bundle.css"
   },
   "author": "",
