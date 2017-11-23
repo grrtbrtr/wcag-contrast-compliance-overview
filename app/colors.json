@@ -6,17 +6,17 @@
    },
    {  
       "_id":1,
-      "foreground":"#bd8a9",
+      "foreground":"#bd8a90",
       "background":"#efb016"
    },
    {  
       "_id":2,
-      "foreground":"#c09c0",
+      "foreground":"#c09c0D",
       "background":"#a6666a"
    },
    {  
       "_id":3,
-      "foreground":"#b650e",
+      "foreground":"#eb650e",
       "background":"#9561e1"
    },
    {  

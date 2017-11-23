@@ -25,4 +25,6 @@ loadJSON((response) => {
 		el.dataset.fg = combination.foreground;
 		el.dataset.bg = combination.background;
 	}
+
+	container.innerHTML = container.innerHTML;
 });
