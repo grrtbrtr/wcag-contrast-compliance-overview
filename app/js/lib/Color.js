@@ -54,7 +54,7 @@ class Color {
 		let appliedColor = [];
 
 		for (let i = 0; i < 3; i++) {
-			appliedColor[i] = (this.alpha * this.rgb[i]) + ((1 - this.alpha) * backgroundColor.rgb[i]);
+			appliedColor[i] = Math.round((this.alpha * this.rgb[i]) + ((1 - this.alpha) * backgroundColor.rgb[i]));
 		}
 
 		return new Color(appliedColor);

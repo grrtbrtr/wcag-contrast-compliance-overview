@@ -1,7 +1,7 @@
 [  
    {  
       "_id":0,
-      "foreground":"#000",
+      "foreground":"rgba(0, 0, 0, 0.5)",
       "background":"#FFF"
    },
    {  
