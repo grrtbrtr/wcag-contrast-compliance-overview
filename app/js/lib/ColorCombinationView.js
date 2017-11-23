@@ -69,9 +69,9 @@ const createComplianceIndicatorItem = (contrast, size, level, elementType) => {
 	if (size === 'small') {
 		complianceCheckFunc = WCAGColorChecker.isWCAGComplianceForSmallText;
 
-		if (level === 'AA') {
+		if (level === 'aa') {
 			htmlContent += '4.5';
-		} else if (level === 'AAA') {
+		} else if (level === 'aaa') {
 			htmlContent += '7';
 		}
 	} else if (size === 'large') {
@@ -185,8 +185,8 @@ class ColorCombinationView {
 		// Add an overview of compliance
 		let complianceEl = document.createElement('ul');
 		complianceEl.classList.add('combination__compliance_overview', 'compliance_overview');
-		complianceEl.appendChild(createComplianceIndicatorItem(this.colorContrast, 'small', 'AA', 'li'));
-		complianceEl.appendChild(createComplianceIndicatorItem(this.colorContrast, 'small', 'AAA', 'li'));
+		complianceEl.appendChild(createComplianceIndicatorItem(this.colorContrast, 'small', 'aa', 'li'));
+		complianceEl.appendChild(createComplianceIndicatorItem(this.colorContrast, 'small', 'aaa', 'li'));
 		complianceEl.appendChild(createComplianceIndicatorItem(this.colorContrast, 'large', 'AA', 'li'));
 		complianceEl.appendChild(createComplianceIndicatorItem(this.colorContrast, 'large', 'AAA', 'li'));
 		el.appendChild(complianceEl);

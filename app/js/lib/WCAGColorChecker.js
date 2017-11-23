@@ -23,6 +23,7 @@ class WCAGColorChecker {
 	 * @param compliancyLevel Which compliancy level to check for ('AA' or 'AAA')
    */
 	static isWCAGComplianceForSmallText(contrast, compliancyLevel) {
+		compliancyLevel = compliancyLevel.toUpperCase();
 		switch (compliancyLevel) {
 			case 'AA':
 				if (contrast >= 4.5) {
