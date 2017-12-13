@@ -62,7 +62,7 @@ const createColorList = (colors) => {
 const createComplianceIndicatorItem = (contrast, size, level, elementType) => {
 	let el = document.createElement(elementType);
 	el.classList.add('compliance_overview__element');
-	
+
 	let complianceCheckFunc;
 	let htmlContent = '<span class="level">' + level + '</span><span class="threshold">';
 
@@ -96,13 +96,12 @@ class ColorCombinationView {
 	 * The constructor function
 	 *
 	 * @param id 			The id that will be set for this element
-	 * @param foreground 	The foreground color (as a valid CSS value string)
-	 * @param background 	The background color (as a valid CSS value string)
+	 * @param colors	An object containing the colors as valid CSS strings (properties: foreground, background and base)
 	 * @param parent		The HTMLElement object to which the resulting color combination view element will be added
 	 *
 	 * @return Returns the added HTMLElement
 	 */
-	constructor(id, foreground, background, parent) {
+	constructor(id, colorCombination, parent) {
 		// Create row
 		let el = document.createElement('article');
 		el.classList.add('combination');
@@ -110,45 +109,57 @@ class ColorCombinationView {
 
 		// Create preview
 		let previewEl = document.createElement('div');
-		previewEl.classList.add('combination__preview')
-		previewEl.style.color = foreground;
-		previewEl.style.backgroundColor = background;
+		previewEl.classList.add('combination__preview', 'preview');
+		// Create preview background base
+		let previewBaseEl = document.createElement('div');
+		previewBaseEl.classList.add('preview__base');
+		previewBaseEl.style.backgroundColor = colorCombination.base;
+		previewEl.appendChild(previewBaseEl);
+		// Create actual preview element
+		let previewActualEl = document.createElement('div');
+		previewActualEl.classList.add('preview__element');
+		previewActualEl.style.color = colorCombination.foreground;
+		previewActualEl.style.backgroundColor = colorCombination.background;
+		previewEl.appendChild(previewActualEl);
+		// Add to element
 		el.appendChild(previewEl);
 
 		parent.appendChild(el);
 
 		// Get computed colors
-		let colorStyle = window.getComputedStyle(previewEl);
-		this.foregroundColor = new Color(colorStyle.color);
-		this.backgroundColor = new Color(colorStyle.backgroundColor);
-		this.flattenedBackgroundColor = this.backgroundColor.flattenTransparency(new Color('transparent'));
+		let previewBaseElColorStyle = window.getComputedStyle(previewBaseEl);
+		let actualPreviewElColorStyle = window.getComputedStyle(previewActualEl);
+		this.baseColor = new Color(previewBaseElColorStyle.backgroundColor);
+		this.foregroundColor = new Color(actualPreviewElColorStyle.color);
+		this.backgroundColor = new Color(actualPreviewElColorStyle.backgroundColor);
+		this.flattenedBackgroundColor = this.backgroundColor.flattenTransparency(this.baseColor);
 		this.flattenedForegroundColor = this.foregroundColor.flattenTransparency(this.flattenedBackgroundColor);
 		this.colorContrast = WCAGColorChecker.getLuminosityContrastRatio(this.flattenedForegroundColor, this.flattenedBackgroundColor);
 
 		// Set the text on the preview
-		previewEl.innerHTML = this.foregroundColor + ' on<br />' + this.backgroundColor;
+		previewActualEl.innerHTML = this.foregroundColor + ' on<br />' + this.backgroundColor;
 
 		// Add original colors
 		let originalColorsContainerEl = document.createElement('div');
 		originalColorsContainerEl.classList.add('combination__colors', 'color_list');
 		el.appendChild(originalColorsContainerEl);
-		/*let originalColorsTitleEl = document.createElement('h2');
-		originalColorsTitleEl.classList.add('color_list__title');
-		originalColorsTitleEl.innerHTML = 'Original colors';
-		originalColorsContainerEl.appendChild(originalColorsTitleEl);*/
+		let originalColorsListLabelEl = document.createElement('span');
+		originalColorsListLabelEl.classList.add('color_list__title');
+		originalColorsListLabelEl.innerHTML = 'Original colors';
+		originalColorsContainerEl.appendChild(originalColorsListLabelEl);
 		let originalColors = [
 			{
 				label: 'Foreground',
-				value: foreground
+				value: colorCombination.foreground
 			},
 			{
 				label: 'Background',
-				value: background
-			}/*,
+				value: colorCombination.background
+			},
 			{
 				label: 'Base',
-				value: background
-			}*/
+				value: colorCombination.base
+			}
 		];
 		let originalColorsListEl = createColorList(originalColors);
 		originalColorsListEl.classList.add('color_list__colors');
@@ -158,10 +169,10 @@ class ColorCombinationView {
 		let flattenedColorsContainerEl = document.createElement('div');
 		flattenedColorsContainerEl.classList.add('combination__colors', 'color_list');
 		el.appendChild(flattenedColorsContainerEl);
-		/*let flattenedColorsTitleEl = document.createElement('h2');
-		flattenedColorsTitleEl.classList.add('color_list__title');
-		flattenedColorsTitleEl.innerHTML = 'Flattened colors';
-		flattenedColorsContainerEl.appendChild(flattenedColorsTitleEl);*/
+		let flattenedColorsListLabelEl = document.createElement('span');
+		flattenedColorsListLabelEl.classList.add('color_list__title');
+		flattenedColorsListLabelEl.innerHTML = 'Flattened colors';
+		flattenedColorsContainerEl.appendChild(flattenedColorsListLabelEl);
 		let flattenedColors = [
 			{
 				label: 'Foreground',
@@ -177,10 +188,17 @@ class ColorCombinationView {
 		flattenedColorsContainerEl.appendChild(flattenedColorsListEl);
 
 		// Show the contrast ratio
+		let contrastContainerEl = document.createElement('div');
+		contrastContainerEl.classList.add('combination__contrast', 'contrast');
+		let contrastLabelEl = document.createElement('span');
+		contrastLabelEl.classList.add('contrast__title');
+		contrastLabelEl.innerHTML = 'Contrast';
+		contrastContainerEl.appendChild(contrastLabelEl);
 		let contrastEl = document.createElement('div');
-		contrastEl.classList.add('combination__contrast');
+		contrastEl.classList.add('contrast__value');
 		contrastEl.innerHTML = MathUtils.round(this.colorContrast, 2);
-		el.appendChild(contrastEl);
+		contrastContainerEl.appendChild(contrastEl);
+		el.appendChild(contrastContainerEl);
 
 		// Add an overview of compliance
 		let complianceEl = document.createElement('ul');

@@ -5,32 +5,54 @@ html {
 
 *, *::before, *::after {
 	box-sizing: inherit;
-}  
+}
 
 body {
 	background: rgba(#000, 0.05);
-  margin: 0; 
+  margin: 0;
   padding: 0;
   color: rgba(#000, 0.9);
   font: 1rem/1.5 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+	position: relative;
+}
+
+.backdrop {
+	top: 0; right: 0; bottom: 0; left: 0;
+	z-index: 1;
+	position: absolute;
 }
 
 $card-border-radius: 2px;
 
 .combinations {
-	max-width: calc(80rem + 2rem);
-	margin: 3rem auto;
-	display: flex;
-	flex-flow: column nowrap;
-	justify-content: flex-start;
-	padding: 0;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+	max-width: calc(70rem + 2rem);
+	padding: 4rem 0;
+	margin: 0 auto;
 	border-radius: $card-border-radius;
-	overflow: hidden;
+	z-index: 2;
+	position: relative;
 }
 
-.combinations {
-	margin-top: 4rem;
+.preview {
+	position: relative;
+
+	&__base {
+		position: absolute;
+		top: 0; right: 0; bottom: 0; left: 1rem;
+		z-index: 1;
+	}
+
+	&__element {
+		position: absolute;
+		top: 0; right: 0; bottom: 0; left: 1rem;
+		z-index: 2;
+		padding: 1.5rem 1rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 0.875rem;
+		text-align: center;
+	}
 }
 
 .combination {
@@ -41,6 +63,33 @@ $card-border-radius: 2px;
 	justify-content: flex-start;
 	align-items: stretch;
 	border-bottom: 1px solid rgba(#000, 0.05);
+	position: relative;
+	padding: 0.5rem 0;
+	width: 100%;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+	transform-origin: 50% 50%;
+	$t-dur: 0.25s;
+	$t-ease: cubic-bezier(0.77, 0, 0.175, 1);
+	transition: width $t-dur $t-ease,
+							transform $t-dur $t-ease,
+							box-shadow $t-dur $t-ease,
+							margin-top $t-dur $t-ease ($t-dur / 2),
+							margin-bottom $t-dur $t-ease ($t-dur / 2);
+
+	&--selected {
+		width: calc(100% + 2rem);
+		transform: translate3d(-1rem, 0, 0);
+		z-index: 90;
+		box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+	}
+
+
+	&--before {
+		transform: translate3d(0, -2rem, 0);
+	}
+	&--after {
+		transform: translate3d(0, 2rem, 0);
+	}
 
 	&:first-child {
 		border-radius: $card-border-radius $card-border-radius 0 0;
@@ -53,32 +102,22 @@ $card-border-radius: 2px;
 
 	&__preview {
 		flex: 0 0 15rem;
-		padding: 1.5rem 1rem;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-size: 0.875rem;
-		text-align: center;
 	}
 
 	&__colors {
 		flex: 1 1 1rem;
-		margin: 1rem 0;
+		margin: 0.5rem 0;
 		padding: 0 1rem 0;
 		border-right: 1px solid rgba(#000, 0.05);
 		align-self: stretch;
 	}
 
 	&__contrast {
-		flex: 0 0 5rem;
+		flex: 0 0 10rem;
 		align-self: stretch;
 		margin: 1rem 0;
 		border-right: 1px solid rgba(#000, 0.05);
 		padding: 0.5rem 1rem;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-size: 0.875rem;
 	}
 
 	&__compliance_overview {
@@ -103,13 +142,14 @@ $card-border-radius: 2px;
 	top: 0;
 	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
 							0 6px 6px rgba(0, 0, 0, 0.23);
+	z-index: 99;
 
 	&__inner {
 		box-shadow: none;
 		margin: 0 auto;
 		padding: 0;
 		display: flex;
-		flex: 0 1 calc(80rem + 2rem);
+		flex: 0 1 calc(70rem + 2rem);
 		flex-flow: row nowrap;
 		list-style: none outside none;
 		font-size: 0.875rem;
@@ -131,7 +171,7 @@ $card-border-radius: 2px;
 		}
 
 		&--contrast {
-			flex: 0 0 5rem;
+			flex: 0 0 10rem;
 			padding-left: 0;
 			text-align: center;
 		}
@@ -156,10 +196,29 @@ $card-border-radius: 2px;
 	}
 }
 
-.color_list {
+.contrast {
 	display: flex;
 	flex-flow: column nowrap;
 	justify-content: center;
+	align-items: center;
+
+	&__title {
+		font-size: 0.75rem;
+		color: rgba(#000, 0.6);
+		font-weight: normal;
+		margin: 0 0 0.5rem;
+		padding: 0;
+	}
+
+	&__value {
+		font-size: 0.875rem;
+	}
+}
+
+.color_list {
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: flex-start;
 	align-items: flex-start;
 
 	&__title {
@@ -181,7 +240,7 @@ $card-border-radius: 2px;
 	list-style: none outside none;
 	width: 100%;
 	display: flex;
-	flex-flow: row wrap;
+	flex-flow: column nowrap;
 	justify-content: flex-start;
 	align-items: flex-start;
 

@@ -1,202 +1,241 @@
-[  
-   {  
+[
+   {
       "_id":0,
       "foreground":"rgba(0, 0, 0, 0.5)",
-      "background":"#FFF"
+      "background":"rgba(0, 0, 0, 0.05)",
+			"base":"#FF0"
    },
-   {  
+   {
       "_id":1,
       "foreground":"#bd8a90",
       "background":"#efb016"
    },
-   {  
+   {
       "_id":2,
       "foreground":"#c09c0D",
-      "background":"#a6666a"
+      "background":"#a6666a",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":3,
       "foreground":"#eb650e",
-      "background":"#9561e1"
+      "background":"#9561e1",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":4,
       "foreground":"#f9b4d8",
-      "background":"#911d97"
+      "background":"#911d97",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":5,
       "foreground":"#a60f1d",
-      "background":"#bf0ae0"
+      "background":"#bf0ae0",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":6,
       "foreground":"#178727",
-      "background":"#39c2b1"
+      "background":"#39c2b1",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":7,
       "foreground":"#5e4254",
-      "background":"#657e4b"
+      "background":"#657e4b",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":8,
       "foreground":"#4b7d25",
-      "background":"#dff12f"
+      "background":"#dff12f",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":9,
       "foreground":"#e5c4b5",
-      "background":"#df706a"
+      "background":"#df706a",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":10,
       "foreground":"#ab2832",
-      "background":"#2567f0"
+      "background":"#2567f0",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":11,
       "foreground":"#764963",
-      "background":"#e7e19d"
+      "background":"#e7e19d",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":12,
       "foreground":"#4cdaa",
-      "background":"#d4b5d5"
+      "background":"#d4b5d5",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":13,
       "foreground":"#adf8c7",
-      "background":"#9bfb02"
+      "background":"#9bfb02",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":14,
       "foreground":"#a68be0",
-      "background":"#90b0ee"
+      "background":"#90b0ee",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":15,
       "foreground":"#ab6487",
-      "background":"#a92bb0"
+      "background":"#a92bb0",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":16,
       "foreground":"#442c3d",
-      "background":"#f1476f"
+      "background":"#f1476f",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":17,
       "foreground":"#c941f",
-      "background":"#b18821"
+      "background":"#b18821",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":18,
       "foreground":"#779d84",
-      "background":"#f5d5fe"
+      "background":"#f5d5fe",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":19,
       "foreground":"#1b797c",
-      "background":"#7a9e8c"
+      "background":"#7a9e8c",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":20,
       "foreground":"#6dfca5",
-      "background":"#778f8a"
+      "background":"#778f8a",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":21,
       "foreground":"#fb42ae",
-      "background":"#7e0b98"
+      "background":"#7e0b98",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":22,
       "foreground":"#c5b39c",
-      "background":"#7f1a57"
+      "background":"#7f1a57",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":23,
       "foreground":"#c9b197",
-      "background":"#5b02ba"
+      "background":"#5b02ba",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":24,
       "foreground":"#1879e6",
-      "background":"#7cde1e"
+      "background":"#7cde1e",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":25,
       "foreground":"#decc78",
-      "background":"#fc354c"
+      "background":"#fc354c",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":26,
       "foreground":"#6346e7",
-      "background":"#cd269"
+      "background":"#cd269",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":27,
       "foreground":"#8c9975",
-      "background":"#554bbc"
+      "background":"#554bbc",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":28,
       "foreground":"#80ea53",
-      "background":"#d54303"
+      "background":"#d54303",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":29,
       "foreground":"#38600a",
-      "background":"#c2a276"
+      "background":"#c2a276",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":30,
       "foreground":"#c8b40b",
-      "background":"#53e8bc"
+      "background":"#53e8bc",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":31,
       "foreground":"#6b7ff1",
-      "background":"#f1660b"
+      "background":"#f1660b",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":32,
       "foreground":"#d0b86e",
-      "background":"#544fa5"
+      "background":"#544fa5",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":33,
       "foreground":"#31adb7",
-      "background":"#446472"
+      "background":"#446472",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":34,
       "foreground":"#d04dbe",
-      "background":"#3a7603"
+      "background":"#3a7603",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":35,
       "foreground":"#385bdd",
-      "background":"#a3d8a"
+      "background":"#a3d8a",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":36,
       "foreground":"#50faa8",
-      "background":"#1ecc25"
+      "background":"#1ecc25",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":37,
       "foreground":"#eca399",
-      "background":"#24d59c"
+      "background":"#24d59c",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":38,
       "foreground":"#aefab3",
-      "background":"#3533cf"
+      "background":"#3533cf",
+			"base":"#FFF"
    },
-   {  
+   {
       "_id":39,
       "foreground":"#58ae1",
-      "background":"#37bffb"
+      "background":"#37bffb",
+			"base":"#FFF"
    }
 ]
