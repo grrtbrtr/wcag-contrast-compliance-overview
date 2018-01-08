@@ -137,7 +137,7 @@ class ColorCombinationView {
 		this.colorContrast = WCAGColorChecker.getLuminosityContrastRatio(this.flattenedForegroundColor, this.flattenedBackgroundColor);
 
 		// Set the text on the preview
-		previewActualEl.innerHTML = this.foregroundColor + ' on<br />' + this.backgroundColor;
+		previewActualEl.innerHTML = '<p><label>Text</label><br />' + this.foregroundColor + '</p><p><label>Background</label><br />' + this.backgroundColor + ' on<br />' + this.baseColor + '</p>';
 
 		// Add original colors
 		let originalColorsContainerEl = document.createElement('div');
