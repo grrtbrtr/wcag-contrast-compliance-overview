@@ -34,6 +34,8 @@ $card-border-radius: 2px;
 
 	h2 {
 		margin: 0;
+		font-size: 1rem;
+		opacity: 0.7;
 	}
 
 	&__swatches {
@@ -49,13 +51,13 @@ $card-border-radius: 2px;
 
 	&__base {
 		position: absolute;
-		top: 0; right: 0; bottom: 0; left: 1rem;
+		top: 0; right: 0; bottom: 0; left: 0.5em;
 		z-index: 1;
 	}
 
 	&__element {
 		position: absolute;
-		top: 0; right: 0; bottom: 0; left: 1rem;
+		top: 0; right: 0; bottom: 0; left: 0.5rem;
 		z-index: 2;
 		padding: 1.5rem 1rem;
 		display: flex;
@@ -136,74 +138,6 @@ $card-border-radius: 2px;
 		padding: 0.5rem 1rem;
 		margin: 1rem 0;
 		align-items: center;
-	}
-}
-
-.legend {
-	width: 100%;
-	background: #4F5464;
-	position: fixed;
-	height: 3rem;
-	margin: 0;
-	padding: 0;
-	display: flex;
-	flex-flow: row nowrap;
-	justify-content: center;
-	align-items: flex-end;
-	top: 0;
-	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
-							0 6px 6px rgba(0, 0, 0, 0.23);
-	z-index: 99;
-
-	&__inner {
-		box-shadow: none;
-		margin: 0 auto;
-		padding: 0;
-		display: flex;
-		flex: 0 1 calc(70rem + 2rem);
-		flex-flow: row nowrap;
-		list-style: none outside none;
-		font-size: 0.875rem;
-		color: rgba(#fff, 0.6);
-		padding-bottom: 0.5rem;
-	}
-
-
-	&__label {
-		&--preview {
-			flex: 0 0 15rem;
-			padding-left: 0.5rem;
-		}
-
-		&--original_colors,
-		&--flattened_colors {
-			flex: 1 1 1rem;
-			padding-left: 1rem;
-		}
-
-		&--contrast {
-			flex: 0 0 10rem;
-			padding-left: 0;
-			text-align: center;
-		}
-
-		&--compliance_small_aa,
-		&--compliance_small_aaa,
-		&--compliance_large_aa,
-		&--compliance_large_aaa {
-			flex: 0 0 3rem;
-			margin-right: 1px;
-			text-align: center;
-			padding-left: 0;
-		}
-
-		&--compliance_small_aa {
-			margin-left: 1rem;
-		}
-
-		&--compliance_large_aaa {
-			margin-right: 1rem;
-		}
 	}
 }
 
