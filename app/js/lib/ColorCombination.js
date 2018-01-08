@@ -1,5 +1,5 @@
 class ColorCombination {
-  constructor(foreground, background, base = "#FF0") {
+  constructor(foreground, background, base = "#FFFFFF") {
     this.foreground = foreground;
     this.background = background;
     this.base = base;
