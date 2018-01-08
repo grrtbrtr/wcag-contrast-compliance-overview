@@ -18,19 +18,30 @@ body {
 
 .backdrop {
 	top: 0; right: 0; bottom: 0; left: 0;
-	z-index: 1;
+	z-index: 2;
 	position: absolute;
+	display: none;
 }
 
 $card-border-radius: 2px;
 
 .combinations {
 	max-width: calc(70rem + 2rem);
-	padding: 4rem 0;
 	margin: 0 auto;
-	border-radius: $card-border-radius;
-	z-index: 2;
+	padding: 2rem 0;
 	position: relative;
+	z-index: 1;
+
+	h2 {
+		margin: 0;
+	}
+
+	&__swatches {
+		padding: 2rem 0 4rem;
+		border-radius: $card-border-radius;
+		z-index: 2;
+		position: relative;
+	}
 }
 
 .preview {
