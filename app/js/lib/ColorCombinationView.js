@@ -153,11 +153,11 @@ class ColorCombinationView {
 				value: colorCombination.foreground
 			},
 			{
-				label: 'Background',
+				label: 'Overlay',
 				value: colorCombination.background
 			},
 			{
-				label: 'Base',
+				label: 'Background',
 				value: colorCombination.base
 			}
 		];
