@@ -35,6 +35,7 @@ class Color {
 		return this.rgba[3];
 	}
 	set alpha(alpha) {
+		//console.log(alpha);
 		this.rgba[3] = alpha;
 	}
 
@@ -61,6 +62,7 @@ class Color {
 	}
 
 	toString() {
+		//console.log('alpha: ' + this.alpha);
 		return 'rgb' + (this.alpha < 1 ? 'a' : '') + '(' + this.rgba.slice(0, this.alpha >= 1 ? 3 : 4).join(', ') + ')';
 	}
 }
