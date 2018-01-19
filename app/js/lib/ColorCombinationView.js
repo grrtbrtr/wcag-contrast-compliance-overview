@@ -110,6 +110,7 @@ class ColorCombinationView {
 		previewActualEl.classList.add('preview__element');
 		previewActualEl.style.color = colorCombination.foreground;
 		previewActualEl.style.backgroundColor = colorCombination.background;
+		previewActualEl.innerHTML = '<div class="preview__inner_element" style="background-color: ' + colorCombination.foreground + '"></div>'
 		previewEl.appendChild(previewActualEl);
 		// Add to element
 		el.appendChild(previewEl);
@@ -127,7 +128,7 @@ class ColorCombinationView {
 		this.colorContrast = WCAGColorChecker.getLuminosityContrastRatio(this.flattenedForegroundColor, this.flattenedBackgroundColor);
 
 		// Set the text on the preview
-		previewActualEl.innerHTML = '<p><label>Text</label><br />' + this.foregroundColor + '</p><p><label>Background</label><br />' + this.backgroundColor + ' on<br />' + this.baseColor + '</p>';
+		//previewActualEl.innerHTML = '<p><label>Text</label><br />' + this.foregroundColor + '</p><p><label>Background</label><br />' + this.backgroundColor + ' on<br />' + this.baseColor + '</p>';
 
 		// Add original colors
 		let originalColorsContainerEl = document.createElement('div');
