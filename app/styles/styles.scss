@@ -29,20 +29,11 @@ $card-border-radius: 2px;
 	max-width: calc(70rem + 2rem);
 	margin: 0 auto;
 	padding: 2rem 0;
-	position: relative;
-	z-index: 1;
 
 	h2 {
 		margin: 0;
 		font-size: 1rem;
 		opacity: 0.7;
-	}
-
-	&__swatches {
-		padding: 2rem 0 4rem;
-		border-radius: $card-border-radius;
-		z-index: 2;
-		position: relative;
 	}
 }
 
@@ -90,28 +81,6 @@ $card-border-radius: 2px;
 	width: 100%;
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 	transform-origin: 50% 50%;
-	$t-dur: 0.25s;
-	$t-ease: cubic-bezier(0.77, 0, 0.175, 1);
-	transition: width $t-dur $t-ease,
-							transform $t-dur $t-ease,
-							box-shadow $t-dur $t-ease,
-							margin-top $t-dur $t-ease ($t-dur / 2),
-							margin-bottom $t-dur $t-ease ($t-dur / 2);
-
-	&--selected {
-		width: calc(100% + 2rem);
-		transform: translate3d(-1rem, 0, 0);
-		z-index: 90;
-		box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-	}
-
-
-	&--before {
-		transform: translate3d(0, -2rem, 0);
-	}
-	&--after {
-		transform: translate3d(0, 2rem, 0);
-	}
 
 	&:first-child {
 		border-radius: $card-border-radius $card-border-radius 0 0;
@@ -137,7 +106,7 @@ $card-border-radius: 2px;
 	&__contrast {
 		flex: 0 0 10rem;
 		align-self: stretch;
-		margin: 1rem 0;
+		margin: 0.5rem 0;
 		border-right: 1px solid rgba(#000, 0.05);
 		padding: 0.5rem 1rem;
 	}
@@ -145,7 +114,7 @@ $card-border-radius: 2px;
 	&__compliance_overview {
 		flex: 0 0 calc(14rem + 3px);
 		padding: 0.5rem 1rem;
-		margin: 1rem 0;
+		margin: 0.5rem 0;
 		align-items: center;
 	}
 }
@@ -250,7 +219,7 @@ $card-border-radius: 2px;
 		display: flex;
 		flex-flow: column nowrap;
 		align-items: center;
-		flex: 0 0 3rem;
+		flex: 0 0 calc(50% - 0.5px);
 		margin-right: 1px;
 
 		&:last-child {

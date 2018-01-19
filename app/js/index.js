@@ -123,16 +123,7 @@ const parseStuff = () => {
 	}
 
 	for (let i = 0; i < combinations.length; i++) {
-		let combinationGroup = document.createElement('div');
-		combinationGroup.classList.add('combinations__group');
-		combinationGroup.innerHTML = '<h2>' + combinations[i].foreground + '</h2>';
-		container.appendChild(combinationGroup);
-
-		let combinationGroupSwatchesContainer = document.createElement('div');
-		combinationGroupSwatchesContainer.classList.add('combinations__swatches');
-		combinationGroup.appendChild(combinationGroupSwatchesContainer);
-
-		let el = new ColorCombinationView('combination-' + (i + 1), combinations[i], combinationGroupSwatchesContainer);
+		let el = new ColorCombinationView('combination-' + (i + 1), combinations[i], container);
 		el.dataset.fg = combinations[i].foreground;
 		el.dataset.bg = combinations[i].background;
 		el.dataset.base = combinations[i].base;
@@ -151,12 +142,12 @@ const parseStuff = () => {
 }
 
 const setLevelFilter = (minimumLevel) => {
-	let combinations = document.querySelectorAll('.combinations__group');
+	let combinations = document.querySelectorAll('.combination');
 	for (let i = 0; i < combinations.length; i++) {
-		if (combinations[i].querySelector('.combination').dataset.contrast < minimumLevel) {
+		if (combinations[i].dataset.contrast < minimumLevel) {
 			combinations[i].style.display = 'none';
 		} else {
-			combinations[i].style.display = 'inherit';
+			combinations[i].style.display = '';
 		}
 	}
 }

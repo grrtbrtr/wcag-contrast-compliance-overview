@@ -2,7 +2,7 @@ class WCAGColorChecker {
 	/**
 	 * Checks the contrast between 2 colors according to their relative luminosity.
 	 * Formula: http://juicystudio.com/article/luminositycontrastratioalgorithm.php#suggestedalgorithm
-	 * 
+	 *
 	 * @return Returns a value from 1 to 21, where 1 means no contrast and 21 means the highest possible contrast.
 	 */
 	static getLuminosityContrastRatio(color1, color2) {

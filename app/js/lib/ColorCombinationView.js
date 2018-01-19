@@ -59,29 +59,19 @@ const createColorList = (colors) => {
  *
  * @return Returns the resulting HTMLElement object
  */
-const createComplianceIndicatorItem = (contrast, size, level, elementType) => {
+const createComplianceIndicatorItem = (contrast, level, elementType) => {
 	let el = document.createElement(elementType);
 	el.classList.add('compliance_overview__element');
 
 	let complianceCheckFunc;
 	let htmlContent = '<span class="level">' + level + '</span><span class="threshold">';
 
-	if (size === 'small') {
-		complianceCheckFunc = WCAGColorChecker.isWCAGComplianceForSmallText;
-
-		if (level === 'aa') {
-			htmlContent += '4.5';
-		} else if (level === 'aaa') {
-			htmlContent += '7';
-		}
-	} else if (size === 'large') {
-		complianceCheckFunc = WCAGColorChecker.isWCAGComplianceForLargeText;
-
-		if (level === 'AA') {
-			htmlContent += '3';
-		} else if (level === 'AAA') {
-			htmlContent += '4.5';
-		}
+	// Only check for small text compliancy
+	complianceCheckFunc = WCAGColorChecker.isWCAGComplianceForSmallText;
+	if (level.toUpperCase() === 'AA') {
+		htmlContent += '4.5';
+	} else if (level.toUpperCase() === 'AAA') {
+		htmlContent += '7';
 	}
 	htmlContent += '</span>';
 
@@ -203,14 +193,12 @@ class ColorCombinationView {
 		// Add an overview of compliance
 		let complianceEl = document.createElement('ul');
 		complianceEl.classList.add('combination__compliance_overview', 'compliance_overview');
-		complianceEl.appendChild(createComplianceIndicatorItem(this.colorContrast, 'small', 'aa', 'li'));
-		complianceEl.appendChild(createComplianceIndicatorItem(this.colorContrast, 'small', 'aaa', 'li'));
-		complianceEl.appendChild(createComplianceIndicatorItem(this.colorContrast, 'large', 'AA', 'li'));
-		complianceEl.appendChild(createComplianceIndicatorItem(this.colorContrast, 'large', 'AAA', 'li'));
+		complianceEl.appendChild(createComplianceIndicatorItem(this.colorContrast, 'AA', 'li'));
+		complianceEl.appendChild(createComplianceIndicatorItem(this.colorContrast, 'AAA', 'li'));
 		el.appendChild(complianceEl);
 
 		el.dataset.contrast = this.colorContrast;
-		
+
 		return el;
 	}
 }
