@@ -2,7 +2,9 @@ import MathUtils from 'MathUtils';
 
 class Color {
 	constructor(rgba) {
-		if (rgba === 'transparent') {
+		if (rgba instanceof Color) { // Constructor method for 'cloning'
+			rgba = rgba.rgba;
+		} else if (rgba === 'transparent') {
 			rgba = [0, 0, 0, 0];
 		} else if (typeof rgba === 'string') {
 			let rgbaString = rgba;
@@ -27,6 +29,10 @@ class Color {
 		this.rgba = rgba;
 	}
 
+	get raw() {
+		return this.rgba
+	}
+
 	get rgb() {
 		return this.rgba.slice(0, 3);
 	}
@@ -35,7 +41,6 @@ class Color {
 		return this.rgba[3];
 	}
 	set alpha(alpha) {
-		//console.log(alpha);
 		this.rgba[3] = alpha;
 	}
 

@@ -4,8 +4,6 @@ import Color from 'Color';
 import ColorCombination from 'ColorCombination';
 import ColorCombinationView from 'ColorCombinationView';
 
-//let clickOutsideHandlerAttached = false;
-
 /**
  * Polyfill for .closest() selector
  */
@@ -29,64 +27,6 @@ if (!Element.prototype.closest) {
 		return null;
 	};
 }
-
-
-/*const loadJSON = (callback) => {
-	let xhr = new XMLHttpRequest();
-
-	xhr.open('GET', 'colors.json', true);
-	xhr.onreadystatechange = () => {
-		if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-			return callback(xhr.responseText);
-		}
-	}
-	xhr.send(null);
-}*/
-
-/*const clickOutsideHandler = () => {
-	document.getElementById('backdrop').removeEventListener('click', clickOutsideHandler);
-	document.getElementById('backdrop').style.display = 'none';
-	clickOutsideHandlerAttached = false;
-
-	let combinationElements = document.getElementsByClassName('combination');
-	Array.from(combinationElements).forEach((currentEl) => {
-    currentEl.classList.remove('combination--before', 'combination--selected', 'combination--after');
-	});
-}*/
-
-/*const combinationClickHandler = (e) => {
-	let el = e.currentTarget;
-	let combinationElements = e.currentTarget.closest('.combinations__swatches').getElementsByClassName('combination');
-	let passedClickedElement = false;
-	let closingElement = false;
-
-	if (el.classList.contains('combination--selected')) {
-		closingElement = true;
-		document.getElementById('backdrop').removeEventListener('click', clickOutsideHandler);
-		document.getElementById('backdrop').style.display = 'none';
-		clickOutsideHandlerAttached = false;
-
-	} else if (clickOutsideHandlerAttached === false) {
-		document.getElementById('backdrop').addEventListener('click', clickOutsideHandler);
-		document.getElementById('backdrop').style.display = 'block';
-		clickOutsideHandlerAttached = true;
-	}
-
-	Array.from(combinationElements).forEach((currentEl) => {
-    currentEl.classList.remove('combination--before', 'combination--selected', 'combination--after');
-
-		if (closingElement === false) {
-			if (currentEl.id === el.id) {
-				currentEl.classList.add('combination--selected');
-				passedClickedElement = true;
-			} else if (passedClickedElement === false) {
-				currentEl.classList.add('combination--before');
-			} else {
-				currentEl.classList.add('combination--after');
-			}
-		}
-  });
-}*/
 
 const buildArrayFromFieldColorValues = (fields) => {
 	let arr = [];
@@ -145,8 +85,9 @@ const parseStuff = () => {
 		}
 
 		for (let j = 0; j < opacityArr.length; j++) {
-			c.value.alpha = opacityArr[j];
-			textColors.push(c.value);
+			let color = new Color(c.value);
+			color.alpha = opacityArr[j];
+			textColors.push(color);
 		}
 	}
 
@@ -164,16 +105,15 @@ const parseStuff = () => {
 			default:
 				break;
 		}
-
 		for (let j = 0; j < opacityArr.length; j++) {
-			c.value.alpha = opacityArr[j];
-			overlayColors.push(c.value);
+			let color = new Color(c.value);
+			color.alpha = opacityArr[j];
+			overlayColors.push(color);
 		}
 	}
 
-	//console.log(backgroundColors.length + " - " + overlayColors.length + " " + textColors.length);
-
 	let combinations = [];
+	let container = document.getElementById('combinations');
 	for (let i = 0; i < backgroundColors.length; i++) {
 		for (let j = 0; j < overlayColors.length; j++) {
 			for (let k = 0; k < textColors.length; k++) {
@@ -181,9 +121,6 @@ const parseStuff = () => {
 			}
 		}
 	}
-
-
-	let container = document.getElementById('combinations');
 
 	for (let i = 0; i < combinations.length; i++) {
 		let combinationGroup = document.createElement('div');
@@ -195,14 +132,10 @@ const parseStuff = () => {
 		combinationGroupSwatchesContainer.classList.add('combinations__swatches');
 		combinationGroup.appendChild(combinationGroupSwatchesContainer);
 
-		//for (let j = 0; j < groupNode.swatches.length; j++) {
-			//console.log(combinations[i].base);
-			//console.log(combinations[i]);
-			let el = new ColorCombinationView('combination-' + (i + 1), combinations[i], combinationGroupSwatchesContainer);
-			el.dataset.fg = combinations[i].foreground;
-			el.dataset.bg = combinations[i].background;
-			el.dataset.base = combinations[i].base;
-		//}
+		let el = new ColorCombinationView('combination-' + (i + 1), combinations[i], combinationGroupSwatchesContainer);
+		el.dataset.fg = combinations[i].foreground;
+		el.dataset.bg = combinations[i].background;
+		el.dataset.base = combinations[i].base;
 	}
 }
 
@@ -219,39 +152,3 @@ const hexStringToColor = (hex) => {
 }
 
 parseStuff();
-
-/*loadJSON((response) => {
-	let json = JSON.parse(response);
-	let container = document.getElementById('combinations');
-	let groupNode;
-
-	for (let i = 0; i < json.length; i++) {
-		groupNode = json[i];
-
-		let combinationGroup = document.createElement('div');
-		combinationGroup.classList.add('combinations__group');
-		combinationGroup.innerHTML = '<h2>' + groupNode.title + '</h2>';
-		container.appendChild(combinationGroup);
-
-		let combinationGroupSwatchesContainer = document.createElement('div');
-		combinationGroupSwatchesContainer.classList.add('combinations__swatches');
-		combinationGroup.appendChild(combinationGroupSwatchesContainer);
-
-		for (let j = 0; j < groupNode.swatches.length; j++) {
-			console.log(groupNode.swatches[j].base);
-			let combination = new ColorCombination(groupNode.swatches[j].foreground, groupNode.swatches[j].background, groupNode.swatches[j].base);
-			console.log(combination);
-			let el = new ColorCombinationView('combination-' + ((i+1) * (j+1)), combination, combinationGroupSwatchesContainer);
-			el.dataset.fg = combination.foreground;
-			el.dataset.bg = combination.background;
-			el.dataset.base = combination.base;
-		}
-	}
-
-	//container.innerHTML = container.innerHTML;
-
-	let combinationElements = document.getElementsByClassName('combination');
-	Array.from(combinationElements).forEach((el) => {
-    el.addEventListener('click', combinationClickHandler);
-  });
-});*/
