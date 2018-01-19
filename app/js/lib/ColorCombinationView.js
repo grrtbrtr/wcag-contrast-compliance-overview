@@ -209,6 +209,8 @@ class ColorCombinationView {
 		complianceEl.appendChild(createComplianceIndicatorItem(this.colorContrast, 'large', 'AAA', 'li'));
 		el.appendChild(complianceEl);
 
+		el.dataset.contrast = this.colorContrast;
+		
 		return el;
 	}
 }

@@ -137,6 +137,28 @@ const parseStuff = () => {
 		el.dataset.bg = combinations[i].background;
 		el.dataset.base = combinations[i].base;
 	}
+
+	//
+	// filter
+	//
+	let levelFilterElements = document.querySelectorAll('input[name=filter-levels]');
+	for (let i = 0; i < levelFilterElements.length; i++) {
+		levelFilterElements[i].addEventListener('change', (e) => {
+			setLevelFilter(e.currentTarget.value);
+		});
+	}
+	setLevelFilter(document.querySelector('input[name=filter-levels][checked]').value);
+}
+
+const setLevelFilter = (minimumLevel) => {
+	let combinations = document.querySelectorAll('.combinations__group');
+	for (let i = 0; i < combinations.length; i++) {
+		if (combinations[i].querySelector('.combination').dataset.contrast < minimumLevel) {
+			combinations[i].style.display = 'none';
+		} else {
+			combinations[i].style.display = 'inherit';
+		}
+	}
 }
 
 const hexStringToColor = (hex) => {
