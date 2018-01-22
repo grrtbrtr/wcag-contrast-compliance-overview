@@ -42,11 +42,29 @@ const buildArrayFromFieldColorValues = (fields) => {
 	return arr;
 }
 
-const parseStuff = () => {
+const init = () => {
+	parseInput();
+
+	document.getElementById('theme').addEventListener('submit', (e) => {
+		e.preventDefault();
+		parseInput();
+	})
+}
+
+const sleep = (ms) => {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+const parseInput = async () => {
+	// Clear existing combinations
+	document.getElementById('combinations').innerHTML = '';
+
+	await sleep(200);
+
 	let inputColors = {
-		background: buildArrayFromFieldColorValues(document.querySelectorAll('#colors_background .swatch input[type="text"]')),
-		text: buildArrayFromFieldColorValues(document.querySelectorAll('#colors_text .swatch input[type="text"]')),
-		overlay: buildArrayFromFieldColorValues(document.querySelectorAll('#colors_overlay .swatch input[type="text"]'))
+		background: buildArrayFromFieldColorValues(document.querySelectorAll('#colors_background .input_swatches__swatch input[type="text"]')),
+		text: buildArrayFromFieldColorValues(document.querySelectorAll('#colors_text .input_swatches__swatch input[type="text"]')),
+		overlay: buildArrayFromFieldColorValues(document.querySelectorAll('#colors_overlay .input_swatches__swatch input[type="text"]'))
 	};
 
 	// Create color combinations
@@ -164,4 +182,4 @@ const hexStringToColor = (hex) => {
   throw new Error('Incorrect hex string');
 }
 
-parseStuff();
+init();

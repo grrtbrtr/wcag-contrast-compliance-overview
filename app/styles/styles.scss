@@ -8,7 +8,7 @@ html {
 }
 
 body {
-	background: rgba(#000, 0.05);
+	background: rgba(#FFF, 1);
   margin: 0;
   padding: 0;
   color: rgba(#000, 0.9);
@@ -16,14 +16,186 @@ body {
 	position: relative;
 }
 
-.backdrop {
-	top: 0; right: 0; bottom: 0; left: 0;
-	z-index: 2;
-	position: absolute;
-	display: none;
+$card-border-radius: 2px;
+
+.theme {
+	background: rgba(#FFFFFF, 1);
+	padding: 1rem;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+
+	h1 {
+		display: none;
+		margin: 0 0 2rem;
+		padding: 0;
+		color: rgba(#000000, 0.90);
+		flex: 0 0 100%;
+	}
+
+	&__group {
+		background: rgba(#000000, 0.05);
+		margin: 0 0 0 0;
+		padding: 2rem 2rem 0;
+		flex: 0 0 100%;
+
+		&__inner {
+			max-width: calc(70rem + 2rem);
+			margin: 0 auto;
+		}
+
+		h2 {
+			margin: 0;
+			padding: 0;
+			font-size: 0.875rem;
+			font-weight: bold;
+			text-transform: uppercase;
+		}
+	}
+
+	&__actions {
+		background: rgba(#000000, 0.05);
+		margin: 0 0 0 0;
+		padding: 2rem 2rem 0;
+		flex: 0 0 100%;
+
+		&__inner {
+			max-width: calc(70rem + 2rem);
+			margin: 0 auto;
+		}
+	}
+
+	& > *:first-child {
+		border-radius: $card-border-radius $card-border-radius 0 0;
+	}
+
+	& > *:last-child {
+		padding-bottom: 1rem;
+		border-radius: 0 0 $card-border-radius $card-border-radius;
+	}
 }
 
-$card-border-radius: 2px;
+$primary-color-1: #514a9d;
+$primary-color-2: #24c6dc;
+
+.actions {
+	list-style: none outside none;
+	margin: 2rem auto 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+
+	&__action {
+		margin: 0 1rem 1rem 0;
+
+		& button {
+			display: inline-block;
+			border: none;
+			border-radius: 4px;
+			background: linear-gradient(45deg, $primary-color-1 0%, $primary-color-2 100%);
+			text-transform: uppercase;
+			padding: 1rem 2rem;
+			color: #FFF;
+			font: 1rem/1.5 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+			transition: background 1s linear;
+		  position: relative;
+		  z-index: 100;
+
+			&:before {
+		    border-radius: inherit;
+		    background-image: linear-gradient(125deg, mix($primary-color-1, #000, 90%) 0%, mix($primary-color-2, #000, 90%) 100%);
+		    content: '';
+		    display: block;
+		    height: 100%;
+		    position: absolute;
+		    top: 0; left: 0;
+		    opacity: 0;
+		    width: 100%;
+		    z-index: -100;
+    		transition: opacity 0.45s;
+		  }
+
+			&:hover {
+		    &:before {
+		      opacity: 1;
+		    }
+		  }
+		}
+	}
+}
+
+.filters_container {
+	margin: 0 1rem;
+	padding: 1rem 0;
+	border-top: 1px solid rgba(#000000, 0.10);
+	border-bottom: 1px solid rgba(#000000, 0.10);
+}
+
+.filters {
+	list-style: none outside none;
+	max-width: calc(70rem + 2rem);
+	width: 100%;
+	display: flex;
+	margin: 0 auto;
+	padding: 0;
+	justify-content: flex-end;
+
+	&__filter {
+		color: rgba(#000000, 0.60);
+		text-transform: uppercase;
+		font-size: 0.875rem;
+		line-height: 1.5;
+
+		input {
+			display: none;
+
+			& + span {
+				padding: 0.5rem 1rem;
+				border-radius: 4px;
+			}
+
+			&:checked + span {
+				background: rgba(#000000, 0.40);
+			 	color: #FFFFFF;
+			}
+		}
+	}
+}
+
+.input_swatches {
+	display: flex;
+	flex-flow: row wrap;
+	list-style: none outside none;
+	margin: 1rem 0 0;
+	padding: 0;
+	justify-content: flex-start;
+
+	$swatches-per-row: 5;
+
+	&__swatch {
+		flex: 0 0 calc((100% - ((#{$swatches-per-row} - 1) * 1rem)) / #{$swatches-per-row});
+		margin: 0 1rem 1rem 0;
+
+		&:nth-child(#{$swatches-per-row}n + #{$swatches-per-row}) {
+			margin-right: 0;
+		}
+
+		label {
+			font-size: 0.875rem;
+			color: rgba(#000000, 0.6);
+			display: inline-block;
+			width: 100%;
+			margin: 0 0 0.25rem;
+		}
+
+		input {
+			font: bold 1rem/1.5 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+			width: 100%;
+			padding: 1rem 1rem;
+			border: none;
+		}
+	}
+}
 
 .combinations {
 	max-width: calc(70rem + 2rem);
