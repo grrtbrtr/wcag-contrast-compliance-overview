@@ -1,5 +1,10 @@
 import MathUtils from 'MathUtils';
 
+const componentToHex = (c) => {
+	let hex = c.toString(16).toUpperCase();
+	return hex.length === 1 ? '0' + hex : hex;
+}
+
 class Color {
 	constructor(rgba) {
 		if (rgba instanceof Color) { // Constructor method for 'cloning'
@@ -13,6 +18,7 @@ class Color {
 			if (rgba) {
 				rgba.shift();
 			} else {
+				console.error(rgba);
 				throw new Error('Invalid string: ' + rgbaString);
 			}
 		}
@@ -64,6 +70,10 @@ class Color {
 		}
 
 		return new Color(appliedColor);
+	}
+
+	toHexString() {
+		return '#' + componentToHex(this.rgba[0]) + componentToHex(this.rgba[1]) + componentToHex(this.rgba[2]);
 	}
 
 	toString() {

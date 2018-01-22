@@ -133,18 +133,37 @@ const parseInput = async () => {
 	let combinations = [];
 	let container = document.getElementById('combinations');
 	for (let i = 0; i < backgroundColors.length; i++) {
+		let combinationsGroup = [];
 		for (let j = 0; j < overlayColors.length; j++) {
 			for (let k = 0; k < textColors.length; k++) {
-				combinations.push(new ColorCombination(textColors[k], overlayColors[j], backgroundColors[i]));
+				combinationsGroup.push(new ColorCombination(textColors[k], overlayColors[j], backgroundColors[i]));
 			}
 		}
+		combinations.push(combinationsGroup);
 	}
 
 	for (let i = 0; i < combinations.length; i++) {
-		let el = new ColorCombinationView('combination-' + (i + 1), combinations[i], container);
-		el.dataset.fg = combinations[i].foreground;
-		el.dataset.bg = combinations[i].background;
-		el.dataset.base = combinations[i].base;
+		let combinationsGroup = combinations[i];
+		let groupEl = document.createElement('section');
+		groupEl.classList.add('color_group');
+		groupEl.innerHTML =
+			'<header class="color_group__header">' +
+			'	<h2>' + combinationsGroup[0].base.toHexString() + '</h2>' +
+		 	'</header>' +
+			'<ul class="legend">' +
+			'	<li class="legend__contrast">Contrast</li>' +
+			'	<li class="legend__compliance_small">Small text</li>' +
+			'	<li class="legend__compliance_large">Large text</li>' +
+			'</ul>' +
+			'<div class="color_group__colors"></div>';
+		container.appendChild(groupEl);
+
+		for (let j = 0; j < combinationsGroup.length; j++) {
+			let el = new ColorCombinationView('combination-' + ((i * j) + 1), combinationsGroup[j], groupEl.querySelector('.color_group__colors'));
+			el.dataset.fg = combinationsGroup[j].foreground;
+			el.dataset.bg = combinationsGroup[j].background;
+			el.dataset.base = combinationsGroup[j].base;
+		}
 	}
 
 	//
