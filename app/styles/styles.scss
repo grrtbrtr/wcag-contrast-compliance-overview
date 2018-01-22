@@ -75,8 +75,8 @@ $card-border-radius: 2px;
 	}
 }
 
-$primary-color-1: #514a9d;
-$primary-color-2: #24c6dc;
+$primary-color-1: #B10DC9;
+$primary-color-2: #F012BE;
 
 .actions {
 	list-style: none outside none;
@@ -103,7 +103,7 @@ $primary-color-2: #24c6dc;
 
 			&:before {
 		    border-radius: inherit;
-		    background-image: linear-gradient(125deg, mix($primary-color-1, #000, 90%) 0%, mix($primary-color-2, #000, 90%) 100%);
+		    background-image: linear-gradient(15deg, mix($primary-color-2, #000, 90%) 0%, mix($primary-color-1, #000, 90%) 100%);
 		    content: '';
 		    display: block;
 		    height: 100%;
@@ -112,11 +112,12 @@ $primary-color-2: #24c6dc;
 		    opacity: 0;
 		    width: 100%;
 		    z-index: -100;
-    		transition: opacity 0.45s;
+    		transition: opacity 0.5s;
 		  }
 
 			&:hover {
 		    &:before {
+					transition: opacity 0.15s;
 		      opacity: 1;
 		    }
 		  }
@@ -190,6 +191,7 @@ $primary-color-2: #24c6dc;
 
 		input {
 			font: bold 1rem/1.5 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+			color: rgba(#000000, 0.90);
 			width: 100%;
 			padding: 1rem 1rem;
 			border: none;
