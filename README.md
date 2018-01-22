@@ -4,7 +4,7 @@
 ```
 git clone git@github.com:grrtbrtr/wcag-contrast-compliance-overview.git
 cd wcag-contrast-compliance-overview
-yarn
+npm install
 ```
 
 ## Run (in development)

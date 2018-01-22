@@ -149,7 +149,7 @@ const parseInput = async () => {
 		groupEl.innerHTML =
 			'<header class="color_group__header">' +
 			'	<h2>' + combinationsGroup[0].base.toHexString() + '</h2>' +
-		 	'</header>' +
+			'</header>' +
 			'<ul class="legend">' +
 			'	<li class="legend__contrast">Contrast</li>' +
 			'	<li class="legend__compliance_small">Small text</li>' +

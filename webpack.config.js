@@ -2,7 +2,7 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const extractPlugin = new ExtractTextPlugin({
-    filename: "bundle.css"
+    filename: 'bundle.css'
 });
 
 module.exports = {
@@ -29,8 +29,25 @@ module.exports = {
 				test: /\.scss$/,
 				use: extractPlugin.extract({
           use: [
-          	'css-loader',
-          	'sass-loader'
+            {
+              loader: 'css-loader',
+              options: { sourceMap: true }
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                sourceMap: true,
+                plugins: () => {
+									return [
+										require('autoprefixer')({ browsers: 'last 2 versions' })
+									]
+								}
+              }
+            },
+            {
+              loader: 'sass-loader',
+              options: { sourceMap: true }
+            }
           ]
         })
 			}
