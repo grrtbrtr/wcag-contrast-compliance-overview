@@ -10,7 +10,6 @@ import ColorCombinationView from 'ColorCombinationView';
 if (!Element.prototype.matches) {
 	Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
 }
-
 if (!Element.prototype.closest) {
 	Element.prototype.closest = function closest(s) {
 		var that = this;
@@ -28,6 +27,12 @@ if (!Element.prototype.closest) {
 	};
 }
 
+/**
+ * BUild an array of objects from an array list of text input fields
+ *
+ * @param fields The array of text input fields
+ * @return Returns an array of objects with a name (input field HTML id) and value (field value) property
+ */
 const buildArrayFromFieldColorValues = (fields) => {
 	let arr = [];
 

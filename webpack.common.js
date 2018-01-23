@@ -1,8 +1,9 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const extractPlugin = new ExtractTextPlugin({
-    filename: 'bundle.css'
+  filename: 'bundle.css'
 });
 
 module.exports = {
@@ -10,20 +11,20 @@ module.exports = {
 	output: {
 		path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/dist'
+    publicPath: '/'
 	},
 	module: {
 		rules: [
-			{
-				enforce: "pre",
+      {
+				enforce: 'pre',
 				test: /\.js$/,
 				exclude: /node_modules/,
-				loader: "eslint-loader",
+				loader: 'eslint-loader',
 			},
 			{
 				test: /\.js$/,
 				exclude: /node_modules/,
-				loader: "babel-loader",
+				loader: 'babel-loader',
 			},
 			{
 				test: /\.scss$/,
@@ -31,7 +32,9 @@ module.exports = {
           use: [
             {
               loader: 'css-loader',
-              options: { sourceMap: true }
+              options: {
+                sourceMap: true
+              }
             },
             {
               loader: 'postcss-loader',
@@ -39,18 +42,25 @@ module.exports = {
                 sourceMap: true,
                 plugins: () => {
 									return [
-										require('autoprefixer')({ browsers: 'last 2 versions' })
+										require('autoprefixer')({ browsers: 'last 2 versions' }),
+                    require('cssnano')
 									]
 								}
               }
             },
             {
               loader: 'sass-loader',
-              options: { sourceMap: true }
+              options: {
+                sourceMap: true
+              }
             }
           ]
         })
-			}
+			},
+      {
+        test: /\.html$/,
+        loader: 'html-loader'
+      }
 		]
 	},
 	resolve: {
@@ -59,12 +69,11 @@ module.exports = {
 			path.resolve('./node_modules')
 		]
 	},
-	devServer: {
-		 contentBase: path.resolve(__dirname, 'app'),
-		 publicPath: '/',
-		 inline: true
-	},
   plugins: [
-      extractPlugin
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: path.resolve(__dirname, 'app', 'index.html')
+    }),
+    extractPlugin
   ]
 }
